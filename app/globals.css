@@ -13,6 +13,11 @@
   --copper: #c47a4a;
   --gold: #d4a574;
   --glow: rgba(168, 69, 28, 0.35);
+  /* rhythm */
+  --space-page-x: 1.35rem;
+  --space-page-y: 2.25rem;
+  --radius-panel: 0.85rem;
+  --radius-field: 0.55rem;
 }
 
 @theme inline {
@@ -43,6 +48,26 @@ body::before {
   z-index: 0;
   opacity: 0.045;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Quiet diagonal kintsugi tear — repaired porcelain hairline */
+body::after {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(
+    118deg,
+    transparent 0%,
+    transparent 41.6%,
+    rgba(196, 122, 74, 0.07) 42%,
+    rgba(212, 165, 116, 0.16) 42.35%,
+    rgba(196, 122, 74, 0.06) 42.7%,
+    transparent 43.2%,
+    transparent 100%
+  );
+  opacity: 0.85;
 }
 
 body > * {
@@ -81,6 +106,28 @@ body > * {
   );
   opacity: 0.85;
   box-shadow: 0 0 6px rgba(212, 165, 116, 0.35);
+}
+
+/* Soft corner tear on panels — porcelain repair motif */
+.kintsugi-tear {
+  pointer-events: none;
+  position: absolute;
+  width: 4.5rem;
+  height: 4.5rem;
+  opacity: 0.55;
+  background:
+    linear-gradient(
+      135deg,
+      transparent 46%,
+      rgba(212, 165, 116, 0.55) 49.5%,
+      rgba(196, 122, 74, 0.35) 50.5%,
+      transparent 54%
+    );
+}
+
+.kintsugi-tear--tr {
+  top: -0.15rem;
+  right: -0.15rem;
 }
 
 .coming-soon {
@@ -126,29 +173,45 @@ body > * {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   .rise,
   .rise-delay,
   .rise-delay-2,
   .soft-in {
     animation: none;
   }
+
+  body::after {
+    opacity: 0.5;
+  }
+
+  .cta:hover:not(:disabled),
+  .cta:active:not(:disabled) {
+    transform: none;
+  }
 }
 
 .enquire-panel {
+  border-radius: var(--radius-panel);
   background:
     linear-gradient(165deg, #1c1611 0%, var(--band) 55%, #100c09 100%);
   box-shadow:
-    0 1px 0 rgba(255, 244, 230, 0.07) inset,
-    0 28px 60px -32px rgba(20, 12, 6, 0.75),
-    0 8px 24px -12px rgba(20, 12, 6, 0.45);
+    0 1px 0 rgba(255, 244, 230, 0.08) inset,
+    0 0 0 1px rgba(212, 165, 116, 0.04) inset,
+    0 32px 64px -34px rgba(20, 12, 6, 0.78),
+    0 10px 28px -14px rgba(20, 12, 6, 0.5);
 }
 
 .enquire-accent {
   background: linear-gradient(90deg, transparent, var(--gold), var(--copper), transparent);
-  opacity: 0.6;
+  opacity: 0.65;
 }
 
 .field-input {
+  border-radius: var(--radius-field);
   box-shadow: inset 0 1px 2px rgba(20, 12, 6, 0.06);
   transition:
     border-color 0.15s ease,
@@ -157,7 +220,7 @@ body > * {
 }
 
 .field-input:hover:not(:disabled) {
-  border-color: rgba(244, 235, 218, 0.32);
+  border-color: rgba(244, 235, 218, 0.34);
 }
 
 .field-input:focus {
@@ -165,7 +228,16 @@ body > * {
   box-shadow:
     inset 0 1px 2px rgba(20, 12, 6, 0.04),
     0 0 0 2px var(--band),
-    0 0 0 4px var(--copper);
+    0 0 0 4px rgba(196, 122, 74, 0.95);
+  outline: none;
+}
+
+.field-input:focus-visible {
+  border-color: transparent;
+  box-shadow:
+    inset 0 1px 2px rgba(20, 12, 6, 0.04),
+    0 0 0 2px var(--band),
+    0 0 0 4px rgba(196, 122, 74, 0.95);
 }
 
 .cta {
@@ -173,7 +245,8 @@ body > * {
   transition:
     background-color 0.15s ease,
     transform 0.15s ease,
-    box-shadow 0.15s ease;
+    box-shadow 0.15s ease,
+    filter 0.15s ease;
 }
 
 .cta:hover:not(:disabled) {
@@ -183,6 +256,20 @@ body > * {
 }
 
 .cta:active:not(:disabled) {
-  transform: translateY(0);
-  box-shadow: 0 6px 16px -10px var(--glow);
+  transform: translateY(1px);
+  box-shadow: 0 4px 12px -8px var(--glow);
+  filter: brightness(0.96);
+}
+
+.site-footer {
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: color-mix(in srgb, var(--rule) 62%, transparent);
+}
+
+@media (min-width: 640px) {
+  :root {
+    --space-page-x: 2.5rem;
+    --space-page-y: 4rem;
+  }
 }
