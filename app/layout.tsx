@@ -17,8 +17,8 @@ const body = Source_Sans_3({
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f1e6d3" },
-    { media: "(prefers-color-scheme: dark)", color: "#14100c" },
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#ffffff" },
   ],
   colorScheme: "light",
 };
@@ -26,10 +26,10 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://kintsugiai.vercel.app"),
   title: {
-    default: `${SITE_NAME} · See how AI can transform your business`,
+    default: `${SITE_NAME} · Intelligence build stronger`,
     template: `%s · ${SITE_NAME}`,
   },
-  description: "See how AI can transform your business.",
+  description: "Intelligence build stronger.",
   applicationName: SITE_NAME,
   icons: {
     icon: [
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: SITE_NAME,
-    description: "See how AI can transform your business.",
+    description: "Intelligence build stronger.",
     locale: "en_AU",
     type: "website",
     siteName: SITE_NAME,
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: SITE_NAME,
-    description: "See how AI can transform your business.",
+    description: "Intelligence build stronger.",
     images: ["/og.png"],
   },
 };

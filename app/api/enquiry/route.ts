@@ -13,18 +13,16 @@ export const runtime = "nodejs";
  *   GOOGLE_FORM_ENTRY_PHONE
  *   GOOGLE_FORM_ENTRY_COMMENT
  */
-function googleFormConfig():
-  | {
-      action: string;
-      entries: {
-        name: string;
-        businessName: string;
-        email: string;
-        phone: string;
-        comment: string;
-      };
-    }
-  | null {
+function googleFormConfig(): {
+  action: string;
+  entries: {
+    name: string;
+    businessName: string;
+    email: string;
+    phone: string;
+    comment: string;
+  };
+} | null {
   const action = process.env.GOOGLE_FORM_ACTION_URL?.trim();
   const name = process.env.GOOGLE_FORM_ENTRY_NAME?.trim();
   const businessName = process.env.GOOGLE_FORM_ENTRY_BUSINESS?.trim();
@@ -60,6 +58,7 @@ async function sendViaGoogleForm(data: EnquiryPayload): Promise<Response> {
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body,
     redirect: "manual",
+    signal: AbortSignal.timeout(15000),
   });
 }
 
@@ -87,7 +86,7 @@ export async function POST(request: Request) {
       {
         ok: false,
         errors: {
-          form: "Enquiry delivery is not configured yet. Set GOOGLE_FORM_ACTION_URL and GOOGLE_FORM_ENTRY_* env vars.",
+          form: "Enquiries are temporarily unavailable. Please try again later. Your details have not been sent.",
         },
       },
       { status: 503 },
