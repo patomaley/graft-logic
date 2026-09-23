@@ -1,6 +1,2 @@
-/**
- * Public site constants (safe to ship).
- * Email delivery uses server env only — see .env.example.
- * TODO: set CONTACT_TO / RESEND_* or FORM_ENDPOINT on Vercel.
- */
+/** Public site constants (safe to ship). */
 export const SITE_NAME = "Graft Logic";
