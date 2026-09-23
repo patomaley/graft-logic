@@ -15,13 +15,11 @@ const body = Source_Sans_3({
 });
 
 export const metadata: Metadata = {
-  title: "See how AI can transform your business | Patrick — Adelaide",
-  description:
-    "I work with Adelaide businesses one at a time — learn how the work actually runs, then build AI that helps. We talk first.",
+  title: "See how AI can transform your business",
+  description: "Enquire to see how AI can transform your business.",
   openGraph: {
     title: "See how AI can transform your business",
-    description:
-      "Adelaide businesses, one at a time. Talk first — then agree what to build and what it costs.",
+    description: "Enquire to see how AI can transform your business.",
     locale: "en_AU",
     type: "website",
   },
