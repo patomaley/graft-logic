@@ -3,36 +3,46 @@ import { SITE_NAME } from "@/lib/site";
 
 export default function Home() {
   return (
-    <div className="mx-auto flex min-h-dvh max-w-[36rem] flex-col px-5 py-8 sm:max-w-[40rem] sm:px-8 sm:py-12">
-      <header className="mb-8 sm:mb-12">
-        <p className="text-[0.7rem] font-bold uppercase tracking-[0.28em] text-[var(--ink-soft)]">
-          {SITE_NAME}
-        </p>
+    <div className="mx-auto flex min-h-dvh max-w-[38rem] flex-col px-6 py-10 sm:max-w-[42rem] sm:px-10 sm:py-16">
+      <header className="rise mb-12 sm:mb-16">
+        <div className="flex items-center gap-3">
+          <span
+            aria-hidden
+            className="h-px w-6 bg-[var(--copper)]/80 sm:w-8"
+          />
+          <p className="brand-mark text-[0.68rem] font-bold uppercase text-[var(--ink-soft)]">
+            {SITE_NAME}
+          </p>
+        </div>
       </header>
 
-      <main className="flex flex-1 flex-col justify-center gap-9 sm:gap-12">
-        <h1 className="display text-[2.15rem] leading-[1.08] text-[var(--ink)] sm:text-[3rem] sm:leading-[1.06]">
+      <main className="flex flex-1 flex-col justify-center gap-10 sm:gap-14">
+        <h1 className="display rise rise-delay text-[2.35rem] leading-[1.05] text-[var(--ink)] sm:text-[3.35rem] sm:leading-[1.02]">
           See how AI can transform your business.
         </h1>
 
         <section
           id="enquire"
-          className="rounded-md border border-[var(--band-edge)] bg-[var(--band)] p-5 shadow-[0_18px_50px_-28px_rgba(28,20,12,0.55)] sm:p-8"
+          className="enquire-panel rise rise-delay-2 relative overflow-hidden rounded-lg border border-[var(--band-edge)] p-6 sm:p-9"
           aria-labelledby="enquire-h"
         >
+          <div
+            aria-hidden
+            className="enquire-accent absolute inset-x-8 top-0 h-px sm:inset-x-12"
+          />
           <h2
             id="enquire-h"
-            className="display text-[1.85rem] leading-tight text-[var(--paper)] sm:text-[2.25rem]"
+            className="display text-[1.95rem] leading-[1.1] text-[var(--cream)] sm:text-[2.4rem]"
           >
             Enquire
           </h2>
-          <div className="mt-6 sm:mt-8">
+          <div className="mt-7 sm:mt-9">
             <EnquiryForm />
           </div>
         </section>
       </main>
 
-      <footer className="mt-10 border-t border-[var(--rule)]/70 pt-5 text-xs tracking-wide text-[var(--ink-soft)] sm:mt-14">
+      <footer className="mt-14 border-t border-[var(--rule)]/50 pt-6 text-[0.7rem] uppercase tracking-[0.2em] text-[var(--ink-soft)] sm:mt-20">
         <p>{SITE_NAME}</p>
       </footer>
     </div>

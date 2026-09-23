@@ -31,9 +31,9 @@ const fields = [
 ] as const;
 
 const labelClass =
-  "mb-1.5 block text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-[var(--paper)]/55";
+  "mb-2 block text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-[var(--cream)]/50";
 const inputClass =
-  "min-h-11 w-full rounded-md border border-[var(--paper)]/18 bg-[var(--cream)] px-3.5 py-2.5 text-base text-[var(--ink)] outline-none ring-[var(--rust)] transition placeholder:text-[var(--ink-soft)]/50 focus:ring-2 disabled:opacity-60 sm:text-[0.95rem]";
+  "field-input min-h-12 w-full rounded-md border border-[var(--cream)]/18 bg-[var(--cream)] px-3.5 py-3 text-base text-[var(--ink)] outline-none placeholder:text-[var(--ink-soft)]/45 disabled:opacity-60 sm:text-[0.95rem]";
 
 export function EnquiryForm() {
   const [status, setStatus] = useState<Status>("idle");
@@ -81,20 +81,22 @@ export function EnquiryForm() {
   if (status === "success") {
     return (
       <div
-        className="rounded-md border border-[var(--paper)]/20 bg-[var(--cream)] p-5 sm:p-6"
+        className="soft-in rounded-md border border-[var(--cream)]/18 bg-[var(--cream)]/95 px-5 py-6 sm:px-6 sm:py-7"
         role="status"
       >
-        <p className="display text-2xl text-[var(--ink)]">Got it.</p>
-        <p className="mt-2 leading-relaxed text-[var(--ink-soft)]">
-          We’ll reply soon.
+        <p className="display text-[1.65rem] leading-tight text-[var(--ink)] sm:text-2xl">
+          Got it.
+        </p>
+        <p className="mt-2.5 text-[0.95rem] leading-relaxed text-[var(--ink-soft)]">
+          We'll reply soon.
         </p>
       </div>
     );
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-4 sm:space-y-5" noValidate>
-      <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
+    <form onSubmit={onSubmit} className="space-y-5" noValidate>
+      <div className="grid gap-5 sm:grid-cols-2">
         {fields.map((f) => (
           <label key={f.name} className="block">
             <span className={labelClass}>
@@ -148,9 +150,9 @@ export function EnquiryForm() {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="mt-1 min-h-12 w-full rounded-md bg-[var(--rust)] px-5 py-3.5 text-sm font-semibold uppercase tracking-[0.16em] text-[var(--paper)] transition hover:bg-[#b45309] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--paper)] disabled:opacity-60 sm:w-auto sm:min-w-[10rem]"
+        className="cta mt-1 min-h-[3.25rem] w-full rounded-md bg-[var(--rust)] px-6 py-3.5 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-[var(--cream)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--cream)] disabled:opacity-60 sm:w-auto sm:min-w-[11rem]"
       >
-        {status === "submitting" ? "Sending…" : "Enquire"}
+        {status === "submitting" ? "Sending..." : "Enquire"}
       </button>
     </form>
   );
