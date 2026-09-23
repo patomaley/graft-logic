@@ -83,8 +83,7 @@ export function EnquiryForm() {
           Got it.
         </p>
         <p className="mt-3 text-[var(--ink-soft)] leading-relaxed">
-          Thanks — I’ll reply soon. Bring whoever owns the phones and the job
-          book to the discovery.
+          Thanks — I’ll reply soon.
         </p>
       </div>
     );
@@ -150,7 +149,7 @@ export function EnquiryForm() {
         disabled={status === "submitting"}
         className="w-full rounded-sm bg-[var(--ink)] px-5 py-3.5 text-sm font-semibold uppercase tracking-[0.14em] text-[var(--paper)] transition hover:bg-[var(--rust)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--rust)] disabled:opacity-60 sm:w-auto"
       >
-        {status === "submitting" ? "Sending…" : "Send enquiry"}
+        {status === "submitting" ? "Sending…" : "Enquire"}
       </button>
     </form>
   );
