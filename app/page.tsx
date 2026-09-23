@@ -1,63 +1,138 @@
+import Image from "next/image";
 import { EnquiryForm } from "@/components/EnquiryForm";
-import { SITE_NAME } from "@/lib/site";
 
+function GoldSeam() {
+  return (
+    <svg
+      className="gold-seam"
+      viewBox="0 0 1200 50"
+      fill="none"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+    >
+      <path d="m0 24 176 2 47-10 82 13 185-7 61 10 112-15 91 8 154-5 99 9 193-5M223 16l18-16m422 17 24 33m221-30 24-20" />
+    </svg>
+  );
+}
 export default function Home() {
   return (
-    <div className="mx-auto flex min-h-dvh max-w-[38rem] flex-col px-[var(--space-page-x)] py-[var(--space-page-y)] sm:max-w-[42rem]">
-      <header className="rise relative mb-11 sm:mb-16">
-        <div className="flex items-center gap-3">
-          <span
-            aria-hidden
-            className="kintsugi-vein h-px w-7 sm:w-9"
-          />
-          <p className="brand-mark text-[0.68rem] font-bold uppercase text-[var(--ink-soft)]">
-            {SITE_NAME}
-          </p>
-        </div>
+    <div id="top">
+      <a className="skip-link" href="#main">
+        Skip to content
+      </a>
+      <header className="wrap site-header">
+        <a className="brand" href="#top" aria-label="Kintsugi AI home">
+          <span className="logo-crop">
+            <Image
+              src="/kintsugi-logo.png"
+              alt=""
+              width={150}
+              height={150}
+              priority
+            />
+          </span>
+          <span>
+            KINTSUGI <b>AI</b>
+          </span>
+        </a>
+        <nav aria-label="Main navigation">
+          <a href="#what-we-do">What we do</a>
+          <a className="nav-contact" href="#enquire">
+            Enquire <span aria-hidden="true">↗</span>
+          </a>
+        </nav>
       </header>
-
-      <main className="flex flex-1 flex-col justify-center gap-8 sm:gap-11">
-        <div className="space-y-6 sm:space-y-7">
-          <h1 className="display rise rise-delay text-[2.35rem] leading-[1.05] text-[var(--ink)] sm:text-[3.35rem] sm:leading-[1.02]">
-            See how AI can transform your business.
+      <main id="main">
+        <section className="wrap intro" aria-labelledby="hero-title">
+          <p className="eyebrow">AI AUTOMATION & CUSTOM SOFTWARE · ADELAIDE</p>
+          <h1 className="display" id="hero-title">
+            Intelligence <em>build stronger.</em>
           </h1>
-
-          <p
-            className="coming-soon rise rise-delay flex items-center gap-3 text-[0.8rem] tracking-[0.04em] text-[var(--ink-soft)] sm:text-[0.85rem]"
-            role="note"
-          >
-            <span aria-hidden className="kintsugi-vein h-px w-5 shrink-0 opacity-80" />
-            More coming soon.
+          <p>
+            Less admin. Better connections. Software built around your business.
           </p>
-        </div>
-
-        <section
-          id="enquire"
-          className="enquire-panel rise rise-delay-2 relative overflow-hidden border border-[var(--band-edge)] p-6 sm:p-9"
-          aria-labelledby="enquire-h"
-        >
-          <div
-            aria-hidden
-            className="kintsugi-tear kintsugi-tear--tr"
-          />
-          <div
-            aria-hidden
-            className="enquire-accent absolute inset-x-8 top-0 h-px sm:inset-x-12"
-          />
-          <h2
-            id="enquire-h"
-            className="display text-[1.95rem] leading-[1.1] text-[var(--cream)] sm:text-[2.4rem]"
-          >
-            Enquire
-          </h2>
-          <div className="mt-7 sm:mt-9">
-            <EnquiryForm />
-          </div>
         </section>
+        <div className="wrap">
+          <GoldSeam />
+        </div>
+        <div className="wrap main-grid">
+          <section
+            id="what-we-do"
+            className="about"
+            aria-labelledby="about-title"
+          >
+            <p className="eyebrow">WHAT WE DO</p>
+            <h2 className="display" id="about-title">
+              Your business.
+              <br />
+              <em>Working better.</em>
+            </h2>
+            <p>
+              We work with businesses to build software, programs and AI
+              automations that solve everyday problems and take repetitive work
+              off your hands.
+            </p>
+            <p>
+              From a tailored package to a made-to-order tool, we start by
+              understanding how you work and what you want to improve.
+            </p>
+            <ul className="services">
+              <li>
+                <span aria-hidden="true">01</span>
+                <div>
+                  <h3>Automate the everyday</h3>
+                  <p>Enquiries, follow-ups, data entry and repetitive admin.</p>
+                </div>
+              </li>
+              <li>
+                <span aria-hidden="true">02</span>
+                <div>
+                  <h3>Connect your tools</h3>
+                  <p>
+                    Bring information and workflows together across your
+                    business.
+                  </p>
+                </div>
+              </li>
+              <li>
+                <span aria-hidden="true">03</span>
+                <div>
+                  <h3>Build what you need</h3>
+                  <p>
+                    Custom software and practical AI tools shaped around your
+                    team.
+                  </p>
+                </div>
+              </li>
+            </ul>
+            <p className="brand-note">
+              Inspired by Kintsugi. Finding strength in better connections.
+            </p>
+          </section>
+          <section
+            className="enquire-panel"
+            id="enquire"
+            aria-labelledby="enquire-title"
+          >
+            <p className="eyebrow">LET’S TALK</p>
+            <h2 className="display" id="enquire-title">
+              What could work
+              <br />
+              <em>better for you?</em>
+            </h2>
+            <p className="form-intro">
+              Tell us a little about your business and what you’d like to
+              improve. We’ll get in touch to discuss it.
+            </p>
+            <p className="required-note">Fields marked * are required.</p>
+            <EnquiryForm />
+          </section>
+        </div>
       </main>
-
-      <footer className="site-footer mt-12 pt-6 text-[0.7rem] uppercase tracking-[0.2em] text-[var(--ink-soft)] sm:mt-20">
-        <p>{SITE_NAME}</p>
+      <footer className="wrap site-footer">
+        <span>KINTSUGI AI</span>
+        <p>Intelligence build stronger.</p>
+        <span>Adelaide, Australia</span>
       </footer>
     </div>
   );
