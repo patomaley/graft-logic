@@ -83,7 +83,7 @@ export function EnquiryForm() {
           Got it.
         </p>
         <p className="mt-3 text-[var(--ink-soft)] leading-relaxed">
-          Thanks — I’ll reply soon.
+          Thanks — we’ll reply soon.
         </p>
       </div>
     );
