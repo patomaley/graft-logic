@@ -1,8 +1,6 @@
-# Graft Logic (marketing one-pager)
+# Kintsugi AI (marketing one-pager)
 
-Public site for **Graft Logic**. Headline + enquire form only. Zero personal names on the page.
-
-Repo folder `never-miss` is historical — not the brand.
+Public site for **Kintsugi AI**. Headline + enquire form only. Zero personal names on the page.
 
 Stack: Next.js 15 App Router + Tailwind + TypeScript. Enquiry → Google Form via `POST /api/enquiry`.
 
@@ -28,9 +26,7 @@ npm run dev
 
 ## Deploy on Vercel
 
-1. Import **patomaley/never-miss**
+1. Import **patomaley/kintsugi-ai**
 2. Framework: Next.js
 3. Set the six `GOOGLE_FORM_*` env vars
-4. Deploy → copy production URL
-
-Branch: `forge/one-pager` → PR into `main`.
+4. Deploy → https://kintsugiai.vercel.app/
