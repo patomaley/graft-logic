@@ -3,33 +3,36 @@ import { SITE_NAME } from "@/lib/site";
 
 export default function Home() {
   return (
-    <div className="mx-auto flex min-h-dvh max-w-[40rem] flex-col px-5 py-10 sm:px-6 sm:py-12">
-      <header className="mb-10">
-        <p className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--ink-soft)]">
+    <div className="mx-auto flex min-h-dvh max-w-[36rem] flex-col px-5 py-8 sm:max-w-[40rem] sm:px-8 sm:py-12">
+      <header className="mb-8 sm:mb-12">
+        <p className="text-[0.7rem] font-bold uppercase tracking-[0.28em] text-[var(--ink-soft)]">
           {SITE_NAME}
         </p>
       </header>
 
-      <main className="flex flex-1 flex-col justify-center space-y-10">
-        <h1 className="display text-[2.35rem] leading-[1.1] text-[var(--ink)] sm:text-[3.15rem]">
+      <main className="flex flex-1 flex-col justify-center gap-9 sm:gap-12">
+        <h1 className="display text-[2.15rem] leading-[1.08] text-[var(--ink)] sm:text-[3rem] sm:leading-[1.06]">
           See how AI can transform your business.
         </h1>
 
         <section
           id="enquire"
-          className="rounded-sm bg-[var(--band)] p-6 text-[var(--paper)] sm:p-8"
+          className="rounded-md border border-[var(--band-edge)] bg-[var(--band)] p-5 shadow-[0_18px_50px_-28px_rgba(28,20,12,0.55)] sm:p-8"
           aria-labelledby="enquire-h"
         >
-          <h2 id="enquire-h" className="display text-3xl text-[var(--paper)]">
+          <h2
+            id="enquire-h"
+            className="display text-[1.85rem] leading-tight text-[var(--paper)] sm:text-[2.25rem]"
+          >
             Enquire
           </h2>
-          <div className="mt-8 [&_label_span]:text-[var(--paper)]/55 [&_input]:border-[var(--paper)]/20 [&_input]:bg-[var(--cream)] [&_input]:text-[var(--ink)] [&_textarea]:border-[var(--paper)]/20 [&_textarea]:bg-[var(--cream)] [&_textarea]:text-[var(--ink)] [&_button]:bg-[var(--rust)] [&_button]:text-[var(--paper)] [&_button:hover]:bg-[#b45309] [&_[role=status]]:border-[var(--paper)]/20 [&_[role=status]]:bg-[var(--cream)] [&_[role=status]_p]:text-[var(--ink)] [&_[role=alert]]:text-[#fecaca]">
+          <div className="mt-6 sm:mt-8">
             <EnquiryForm />
           </div>
         </section>
       </main>
 
-      <footer className="mt-12 border-t border-[var(--rule)] pt-5 text-sm text-[var(--ink-soft)]">
+      <footer className="mt-10 border-t border-[var(--rule)]/70 pt-5 text-xs tracking-wide text-[var(--ink-soft)] sm:mt-14">
         <p>{SITE_NAME}</p>
       </footer>
     </div>

@@ -9,7 +9,7 @@ const fields = [
   { name: "name", label: "Name", type: "text", required: true, autoComplete: "name" },
   {
     name: "businessName",
-    label: "Business name",
+    label: "Business",
     type: "text",
     required: true,
     autoComplete: "organization",
@@ -29,6 +29,11 @@ const fields = [
     autoComplete: "tel",
   },
 ] as const;
+
+const labelClass =
+  "mb-1.5 block text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-[var(--paper)]/55";
+const inputClass =
+  "min-h-11 w-full rounded-md border border-[var(--paper)]/18 bg-[var(--cream)] px-3.5 py-2.5 text-base text-[var(--ink)] outline-none ring-[var(--rust)] transition placeholder:text-[var(--ink-soft)]/50 focus:ring-2 disabled:opacity-60 sm:text-[0.95rem]";
 
 export function EnquiryForm() {
   const [status, setStatus] = useState<Status>("idle");
@@ -76,25 +81,23 @@ export function EnquiryForm() {
   if (status === "success") {
     return (
       <div
-        className="rounded-sm border border-[var(--ink)]/20 bg-[var(--cream)] p-6"
+        className="rounded-md border border-[var(--paper)]/20 bg-[var(--cream)] p-5 sm:p-6"
         role="status"
       >
-        <p className="font-[family-name:var(--font-display)] text-2xl text-[var(--ink)]">
-          Got it.
-        </p>
-        <p className="mt-3 text-[var(--ink-soft)] leading-relaxed">
-          Thanks — we’ll reply soon.
+        <p className="display text-2xl text-[var(--ink)]">Got it.</p>
+        <p className="mt-2 leading-relaxed text-[var(--ink-soft)]">
+          We’ll reply soon.
         </p>
       </div>
     );
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-5" noValidate>
-      <div className="grid gap-5 sm:grid-cols-2">
+    <form onSubmit={onSubmit} className="space-y-4 sm:space-y-5" noValidate>
+      <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
         {fields.map((f) => (
-          <label key={f.name} className="block sm:col-span-1">
-            <span className="mb-1.5 block text-xs font-semibold uppercase tracking-[0.12em] text-[var(--ink-soft)]">
+          <label key={f.name} className="block">
+            <span className={labelClass}>
               {f.label}
               {f.required ? " *" : ""}
             </span>
@@ -104,14 +107,14 @@ export function EnquiryForm() {
               required={f.required}
               autoComplete={f.autoComplete}
               disabled={status === "submitting"}
-              className="w-full rounded-sm border border-[var(--ink)]/25 bg-[var(--cream)] px-3 py-2.5 text-[var(--ink)] outline-none ring-[var(--rust)] focus:ring-2 disabled:opacity-60"
+              className={inputClass}
               aria-invalid={Boolean(errors[f.name])}
               aria-describedby={errors[f.name] ? `${f.name}-err` : undefined}
             />
             {errors[f.name] ? (
               <span
                 id={`${f.name}-err`}
-                className="mt-1 block text-sm text-[var(--rust)]"
+                className="mt-1.5 block text-sm text-[#fecaca]"
               >
                 {errors[f.name]}
               </span>
@@ -121,25 +124,23 @@ export function EnquiryForm() {
       </div>
 
       <label className="block">
-        <span className="mb-1.5 block text-xs font-semibold uppercase tracking-[0.12em] text-[var(--ink-soft)]">
-          Comment (optional)
-        </span>
+        <span className={labelClass}>Comment (optional)</span>
         <textarea
           name="comment"
           rows={4}
           disabled={status === "submitting"}
-          className="w-full resize-y rounded-sm border border-[var(--ink)]/25 bg-[var(--cream)] px-3 py-2.5 text-[var(--ink)] outline-none ring-[var(--rust)] focus:ring-2 disabled:opacity-60"
+          className={`${inputClass} resize-y`}
           aria-invalid={Boolean(errors.comment)}
         />
         {errors.comment ? (
-          <span className="mt-1 block text-sm text-[var(--rust)]">
+          <span className="mt-1.5 block text-sm text-[#fecaca]">
             {errors.comment}
           </span>
         ) : null}
       </label>
 
       {errors.form ? (
-        <p className="text-sm text-[var(--rust)]" role="alert">
+        <p className="text-sm text-[#fecaca]" role="alert">
           {errors.form}
         </p>
       ) : null}
@@ -147,7 +148,7 @@ export function EnquiryForm() {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="w-full rounded-sm bg-[var(--ink)] px-5 py-3.5 text-sm font-semibold uppercase tracking-[0.14em] text-[var(--paper)] transition hover:bg-[var(--rust)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--rust)] disabled:opacity-60 sm:w-auto"
+        className="mt-1 min-h-12 w-full rounded-md bg-[var(--rust)] px-5 py-3.5 text-sm font-semibold uppercase tracking-[0.16em] text-[var(--paper)] transition hover:bg-[#b45309] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--paper)] disabled:opacity-60 sm:w-auto sm:min-w-[10rem]"
       >
         {status === "submitting" ? "Sending…" : "Enquire"}
       </button>

@@ -1,13 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --paper: #f3ead7;
-  --cream: #faf6ec;
-  --ink: #1c1712;
-  --ink-soft: #5a4f43;
+  --paper: #f4ebda;
+  --cream: #fbf7ef;
+  --ink: #1a1510;
+  --ink-soft: #5c5246;
   --rust: #9a3412;
-  --rule: #c9b89a;
-  --band: #241c16;
+  --rule: #d0c0a4;
+  --band: #1f1813;
+  --band-edge: #3a2f26;
 }
 
 @theme inline {
@@ -17,15 +18,17 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   background:
-    radial-gradient(ellipse 80% 50% at 10% -10%, #e8d4b0 0%, transparent 55%),
-    linear-gradient(180deg, var(--paper) 0%, #ebe0c8 100%);
+    radial-gradient(ellipse 90% 55% at 8% -15%, #e6d2ae 0%, transparent 58%),
+    radial-gradient(ellipse 60% 40% at 100% 100%, #ddc9a4 0%, transparent 50%),
+    linear-gradient(180deg, var(--paper) 0%, #e9dfc9 100%);
   color: var(--ink);
   font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 ::selection {
@@ -36,10 +39,6 @@ body {
 .display {
   font-family: var(--font-display), ui-serif, Georgia, serif;
   font-weight: 500;
-  letter-spacing: -0.02em;
-}
-
-.rule {
-  height: 1px;
-  background: var(--rule);
+  letter-spacing: -0.025em;
+  font-optical-sizing: auto;
 }

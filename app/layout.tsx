@@ -17,7 +17,7 @@ const body = Source_Sans_3({
 
 export const metadata: Metadata = {
   title: {
-    default: SITE_NAME,
+    default: `${SITE_NAME} · See how AI can transform your business`,
     template: `%s · ${SITE_NAME}`,
   },
   description: "See how AI can transform your business.",

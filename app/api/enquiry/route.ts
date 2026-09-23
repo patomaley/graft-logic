@@ -1,61 +1,66 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
 import { validateEnquiry, type EnquiryPayload } from "@/lib/enquiry";
-import { SITE_NAME } from "@/lib/site";
 
 export const runtime = "nodejs";
 
-async function sendViaFormEndpoint(
-  endpoint: string,
-  data: EnquiryPayload,
-): Promise<Response> {
-  return fetch(endpoint, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-    body: JSON.stringify({
-      name: data.name,
-      businessName: data.businessName,
-      email: data.email,
-      phone: data.phone,
-      comment: data.comment ?? "",
-      _subject: `${SITE_NAME} enquiry — ${data.businessName}`,
-    }),
-  });
+/**
+ * Google Forms formResponse POST.
+ * Env (set on Vercel):
+ *   GOOGLE_FORM_ACTION_URL  — …/formResponse
+ *   GOOGLE_FORM_ENTRY_NAME
+ *   GOOGLE_FORM_ENTRY_BUSINESS
+ *   GOOGLE_FORM_ENTRY_EMAIL
+ *   GOOGLE_FORM_ENTRY_PHONE
+ *   GOOGLE_FORM_ENTRY_COMMENT
+ */
+function googleFormConfig():
+  | {
+      action: string;
+      entries: {
+        name: string;
+        businessName: string;
+        email: string;
+        phone: string;
+        comment: string;
+      };
+    }
+  | null {
+  const action = process.env.GOOGLE_FORM_ACTION_URL?.trim();
+  const name = process.env.GOOGLE_FORM_ENTRY_NAME?.trim();
+  const businessName = process.env.GOOGLE_FORM_ENTRY_BUSINESS?.trim();
+  const email = process.env.GOOGLE_FORM_ENTRY_EMAIL?.trim();
+  const phone = process.env.GOOGLE_FORM_ENTRY_PHONE?.trim();
+  const comment = process.env.GOOGLE_FORM_ENTRY_COMMENT?.trim();
+
+  if (!action || !name || !businessName || !email || !phone || !comment) {
+    return null;
+  }
+
+  return {
+    action,
+    entries: { name, businessName, email, phone, comment },
+  };
 }
 
-async function sendViaResend(data: EnquiryPayload): Promise<void> {
-  const apiKey = process.env.RESEND_API_KEY;
-  const to = process.env.CONTACT_TO;
-  const from =
-    process.env.RESEND_FROM ?? `${SITE_NAME} <onboarding@resend.dev>`;
-
-  if (!apiKey || !to) {
-    throw new Error("Resend not configured");
+async function sendViaGoogleForm(data: EnquiryPayload): Promise<Response> {
+  const cfg = googleFormConfig();
+  if (!cfg) {
+    throw new Error("Google Form not configured");
   }
 
-  const resend = new Resend(apiKey);
-  const lines = [
-    `Name: ${data.name}`,
-    `Business: ${data.businessName}`,
-    `Email: ${data.email}`,
-    `Phone: ${data.phone}`,
-    data.comment ? `Comment:\n${data.comment}` : "Comment: (none)",
-  ];
+  const body = new URLSearchParams();
+  body.set(cfg.entries.name, data.name);
+  body.set(cfg.entries.businessName, data.businessName);
+  body.set(cfg.entries.email, data.email);
+  body.set(cfg.entries.phone, data.phone);
+  body.set(cfg.entries.comment, data.comment ?? "");
 
-  const { error } = await resend.emails.send({
-    from,
-    to: [to],
-    replyTo: data.email,
-    subject: `${SITE_NAME} enquiry — ${data.businessName}`,
-    text: lines.join("\n"),
+  return fetch(cfg.action, {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body,
+    redirect: "manual",
   });
-
-  if (error) {
-    throw new Error(error.message || "Resend send failed");
-  }
 }
 
 export async function POST(request: Request) {
@@ -77,42 +82,33 @@ export async function POST(request: Request) {
     );
   }
 
-  const { data } = validated;
-  const formEndpoint = process.env.FORM_ENDPOINT?.trim();
-
-  try {
-    if (formEndpoint) {
-      const upstream = await sendViaFormEndpoint(formEndpoint, data);
-      if (!upstream.ok) {
-        const detail = await upstream.text().catch(() => "");
-        console.error("FORM_ENDPOINT error", upstream.status, detail);
-        return NextResponse.json(
-          {
-            ok: false,
-            errors: {
-              form: "Could not submit enquiry. Try again shortly.",
-            },
-          },
-          { status: 502 },
-        );
-      }
-      return NextResponse.json({ ok: true });
-    }
-
-    if (process.env.RESEND_API_KEY && process.env.CONTACT_TO) {
-      await sendViaResend(data);
-      return NextResponse.json({ ok: true });
-    }
-
+  if (!googleFormConfig()) {
     return NextResponse.json(
       {
         ok: false,
         errors: {
-          form: "Enquiry delivery is not configured yet. Set FORM_ENDPOINT or RESEND_API_KEY + CONTACT_TO.",
+          form: "Enquiry delivery is not configured yet. Set GOOGLE_FORM_ACTION_URL and GOOGLE_FORM_ENTRY_* env vars.",
         },
       },
       { status: 503 },
     );
+  }
+
+  try {
+    const upstream = await sendViaGoogleForm(validated.data);
+    // Google often returns 200 or 302 on success
+    if (upstream.status >= 400) {
+      const detail = await upstream.text().catch(() => "");
+      console.error("Google Form error", upstream.status, detail.slice(0, 500));
+      return NextResponse.json(
+        {
+          ok: false,
+          errors: { form: "Could not submit enquiry. Try again shortly." },
+        },
+        { status: 502 },
+      );
+    }
+    return NextResponse.json({ ok: true });
   } catch (err) {
     console.error("enquiry submit failed", err);
     return NextResponse.json(
