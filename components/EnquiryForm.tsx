@@ -88,7 +88,7 @@ export function EnquiryForm() {
           Got it.
         </p>
         <p className="mt-2.5 text-[0.95rem] leading-relaxed text-[var(--ink-soft)]">
-          We'll reply soon.
+          We&apos;ll reply soon.
         </p>
       </div>
     );

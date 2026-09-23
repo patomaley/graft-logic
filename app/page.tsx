@@ -8,7 +8,7 @@ export default function Home() {
         <div className="flex items-center gap-3">
           <span
             aria-hidden
-            className="h-px w-6 bg-[var(--copper)]/80 sm:w-8"
+            className="kintsugi-vein h-px w-7 sm:w-9"
           />
           <p className="brand-mark text-[0.68rem] font-bold uppercase text-[var(--ink-soft)]">
             {SITE_NAME}
@@ -16,10 +16,20 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="flex flex-1 flex-col justify-center gap-10 sm:gap-14">
-        <h1 className="display rise rise-delay text-[2.35rem] leading-[1.05] text-[var(--ink)] sm:text-[3.35rem] sm:leading-[1.02]">
-          See how AI can transform your business.
-        </h1>
+      <main className="flex flex-1 flex-col justify-center gap-9 sm:gap-12">
+        <div className="space-y-6 sm:space-y-7">
+          <h1 className="display rise rise-delay text-[2.35rem] leading-[1.05] text-[var(--ink)] sm:text-[3.35rem] sm:leading-[1.02]">
+            See how AI can transform your business.
+          </h1>
+
+          <p
+            className="coming-soon rise rise-delay flex items-center gap-3 text-[0.8rem] tracking-[0.04em] text-[var(--ink-soft)] sm:text-[0.85rem]"
+            role="note"
+          >
+            <span aria-hidden className="kintsugi-vein h-px w-5 shrink-0 opacity-80" />
+            More coming soon.
+          </p>
+        </div>
 
         <section
           id="enquire"
@@ -42,7 +52,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="mt-14 border-t border-[var(--rule)]/50 pt-6 text-[0.7rem] uppercase tracking-[0.2em] text-[var(--ink-soft)] sm:mt-20">
+      <footer className="mt-14 border-t border-[var(--rule)]/55 pt-6 text-[0.7rem] uppercase tracking-[0.2em] text-[var(--ink-soft)] sm:mt-20">
         <p>{SITE_NAME}</p>
       </footer>
     </div>

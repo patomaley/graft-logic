@@ -3,14 +3,15 @@
 :root {
   --paper: #f1e6d3;
   --cream: #faf6ee;
-  --ink: #14100c;
-  --ink-soft: #65594c;
+  --ink: #120e0a;
+  --ink-soft: #5a4f43;
   --rust: #8a3a18;
   --rust-hot: #a8451c;
   --rule: #c9b593;
   --band: #14100c;
   --band-edge: #3a2f26;
   --copper: #c47a4a;
+  --gold: #d4a574;
   --glow: rgba(168, 69, 28, 0.35);
 }
 
@@ -26,8 +27,8 @@ html {
 
 body {
   background:
-    radial-gradient(ellipse 85% 50% at 12% -10%, rgba(196, 148, 90, 0.38) 0%, transparent 55%),
-    radial-gradient(ellipse 55% 45% at 95% 105%, rgba(139, 90, 50, 0.18) 0%, transparent 48%),
+    radial-gradient(ellipse 85% 50% at 12% -10%, rgba(196, 148, 90, 0.4) 0%, transparent 55%),
+    radial-gradient(ellipse 55% 45% at 95% 105%, rgba(139, 90, 50, 0.2) 0%, transparent 48%),
     linear-gradient(165deg, var(--paper) 0%, #e8dcc6 52%, #e2d4ba 100%);
   color: var(--ink);
   font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
@@ -66,6 +67,24 @@ body > * {
 .brand-mark {
   letter-spacing: 0.32em;
   font-feature-settings: "ss01" on;
+}
+
+/* Thin copper/gold vein — kintsugi accent, not a logo */
+.kintsugi-vein {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--copper) 18%,
+    var(--gold) 52%,
+    var(--copper) 82%,
+    transparent 100%
+  );
+  opacity: 0.85;
+  box-shadow: 0 0 6px rgba(212, 165, 116, 0.35);
+}
+
+.coming-soon {
+  border-left: none;
 }
 
 .rise {
@@ -119,14 +138,14 @@ body > * {
   background:
     linear-gradient(165deg, #1c1611 0%, var(--band) 55%, #100c09 100%);
   box-shadow:
-    0 1px 0 rgba(255, 244, 230, 0.06) inset,
+    0 1px 0 rgba(255, 244, 230, 0.07) inset,
     0 28px 60px -32px rgba(20, 12, 6, 0.75),
     0 8px 24px -12px rgba(20, 12, 6, 0.45);
 }
 
 .enquire-accent {
-  background: linear-gradient(90deg, transparent, var(--copper), transparent);
-  opacity: 0.55;
+  background: linear-gradient(90deg, transparent, var(--gold), var(--copper), transparent);
+  opacity: 0.6;
 }
 
 .field-input {
