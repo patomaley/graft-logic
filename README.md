@@ -30,3 +30,8 @@ npm run dev
 2. Framework: Next.js
 3. Set the six `GOOGLE_FORM_*` env vars
 4. Deploy → https://kintsugiai.vercel.app/
+
+## Custom domain
+
+When Intern has DNS for `kintsugiai.com.au`, see **[DOMAIN.md](./DOMAIN.md)** for the Vercel add-domain + DNS record steps. Do not purchase the domain from this repo.
+

@@ -3,8 +3,8 @@ import { SITE_NAME } from "@/lib/site";
 
 export default function Home() {
   return (
-    <div className="mx-auto flex min-h-dvh max-w-[38rem] flex-col px-6 py-10 sm:max-w-[42rem] sm:px-10 sm:py-16">
-      <header className="rise mb-12 sm:mb-16">
+    <div className="mx-auto flex min-h-dvh max-w-[38rem] flex-col px-[var(--space-page-x)] py-[var(--space-page-y)] sm:max-w-[42rem]">
+      <header className="rise relative mb-11 sm:mb-16">
         <div className="flex items-center gap-3">
           <span
             aria-hidden
@@ -16,7 +16,7 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="flex flex-1 flex-col justify-center gap-9 sm:gap-12">
+      <main className="flex flex-1 flex-col justify-center gap-8 sm:gap-11">
         <div className="space-y-6 sm:space-y-7">
           <h1 className="display rise rise-delay text-[2.35rem] leading-[1.05] text-[var(--ink)] sm:text-[3.35rem] sm:leading-[1.02]">
             See how AI can transform your business.
@@ -33,9 +33,13 @@ export default function Home() {
 
         <section
           id="enquire"
-          className="enquire-panel rise rise-delay-2 relative overflow-hidden rounded-lg border border-[var(--band-edge)] p-6 sm:p-9"
+          className="enquire-panel rise rise-delay-2 relative overflow-hidden border border-[var(--band-edge)] p-6 sm:p-9"
           aria-labelledby="enquire-h"
         >
+          <div
+            aria-hidden
+            className="kintsugi-tear kintsugi-tear--tr"
+          />
           <div
             aria-hidden
             className="enquire-accent absolute inset-x-8 top-0 h-px sm:inset-x-12"
@@ -52,7 +56,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="mt-14 border-t border-[var(--rule)]/55 pt-6 text-[0.7rem] uppercase tracking-[0.2em] text-[var(--ink-soft)] sm:mt-20">
+      <footer className="site-footer mt-12 pt-6 text-[0.7rem] uppercase tracking-[0.2em] text-[var(--ink-soft)] sm:mt-20">
         <p>{SITE_NAME}</p>
       </footer>
     </div>
