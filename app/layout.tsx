@@ -15,13 +15,13 @@ const body = Source_Sans_3({
 });
 
 export const metadata: Metadata = {
-  title: "Never Miss an Enquiry | Adelaide",
+  title: "Process-first AI for SA service firms | Patrick — Adelaide",
   description:
-    "Missed calls and slow replies cost jobs. Text-first enquiry systems for Adelaide service firms.",
+    "I go into your business, learn the work by doing it, map how jobs actually move — then automate the friction with AI. Custom to your workflows. Adelaide.",
   openGraph: {
-    title: "Never Miss an Enquiry",
+    title: "Process-first AI | Patrick — Adelaide",
     description:
-      "I build the system that answers every enquiry in under a minute — text-first, for Adelaide service firms.",
+      "Custom to your workflows. Not a cookie-cutter bot pack. Adelaide, phone-first service firms.",
     locale: "en_AU",
     type: "website",
   },
