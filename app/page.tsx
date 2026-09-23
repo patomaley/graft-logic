@@ -1,23 +1,38 @@
 import { EnquiryForm } from "@/components/EnquiryForm";
 
-const tiers = [
+const howSteps = [
   {
-    n: "01",
+    n: "1",
+    body: "Sit in the process (calls, enquiries, job book, handoffs).",
+  },
+  {
+    n: "2",
+    body: "Map where time and jobs leak.",
+  },
+  {
+    n: "3",
+    body: "Automate the high-leverage bits — often many small gains stacked, not one magic switch.",
+  },
+] as const;
+
+const ladder = [
+  {
+    n: "1",
     title: "AI Opportunity Audit",
     price: "$1,500",
-    body: "90 minutes. Plain-English report: where time and revenue leak, what to fix first, fixed-price quote for that build. Free if I can’t find ≥5 hrs/week automatable work.",
+    body: "90 min, plain-English report + fixed-price quote. Free if can’t find ≥5 hrs/week automatable.",
   },
   {
-    n: "02",
-    title: "Pilot — “Never miss an enquiry”",
+    n: "2",
+    title: "Pilot",
     price: "$3,000–8,000",
-    body: "One workflow live in 2–4 weeks: instant lead response + missed-call capture (SMS-first). Fixed price, written success measure, 30-day outcome guarantee.",
+    body: "One workflow, 2–4 weeks, fixed price, written success measure, 30-day guarantee.",
   },
   {
-    n: "03",
+    n: "3",
     title: "Retainer",
     price: "$500–2,000/month",
-    body: "Keep it running, improve it, add the next workflow when ready.",
+    body: "",
   },
 ] as const;
 
@@ -34,7 +49,7 @@ export default function Home() {
     <div className="mx-auto max-w-[42rem] px-5 pb-16 pt-10 sm:px-6 sm:pt-14">
       <header className="mb-12 flex items-baseline justify-between gap-4">
         <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--ink-soft)]">
-          Adelaide · AUD
+          Adelaide · AUD · Patrick
         </p>
         <a
           href="#enquire"
@@ -45,36 +60,81 @@ export default function Home() {
       </header>
 
       <main className="space-y-14 sm:space-y-16">
-        {/* HERO — locked Outbox copy */}
+        {/* HERO — locked */}
         <section aria-labelledby="hero-h">
           <h1
             id="hero-h"
-            className="display text-[2.35rem] leading-[1.12] text-[var(--ink)] sm:text-[3.1rem]"
+            className="display text-[2.25rem] leading-[1.12] text-[var(--ink)] sm:text-[3rem]"
           >
-            Missed calls and slow replies cost jobs.
+            I go into your business, learn the work by doing it, map how jobs
+            actually move — then automate the friction with AI.
           </h1>
           <p className="mt-6 text-lg leading-relaxed text-[var(--ink-soft)] sm:text-xl">
-            I build the system that answers every enquiry in under a minute —
-            text-first, for Adelaide service firms — then a real person follows
-            up.
+            Custom to your workflows. Not a cookie-cutter bot pack. Adelaide,
+            phone-first service firms.
           </p>
         </section>
 
         <div className="rule" />
 
-        {/* TIERS */}
-        <section aria-labelledby="tiers-h">
+        {/* HOW IT WORKS — locked */}
+        <section aria-labelledby="how-h">
           <h2
-            id="tiers-h"
+            id="how-h"
+            className="display text-2xl text-[var(--ink)] sm:text-3xl"
+          >
+            How it works
+          </h2>
+          <ol className="mt-8 space-y-5">
+            {howSteps.map((s) => (
+              <li key={s.n} className="grid grid-cols-[2rem_1fr] gap-3">
+                <span className="font-mono text-sm text-[var(--rust)]">
+                  {s.n}.
+                </span>
+                <p className="leading-relaxed text-[var(--ink-soft)]">{s.body}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        <div className="rule" />
+
+        {/* EXAMPLE PATTERN — locked */}
+        <section
+          className="rounded-sm border border-[var(--ink)]/15 bg-[var(--cream)]/70 p-6"
+          aria-labelledby="example-h"
+        >
+          <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--rust)]">
+            Example pattern
+          </p>
+          <h2
+            id="example-h"
+            className="display mt-3 text-2xl text-[var(--ink)] sm:text-[1.75rem]"
+          >
+            One framework that transfers across industries: never miss an
+            enquiry
+          </h2>
+          <p className="mt-4 leading-relaxed text-[var(--ink-soft)]">
+            Instant acknowledgment, SMS-first missed-call capture, a person
+            still owns the follow-up. Same shape fits trades, surveyors, allied
+            health, small legal, real estate. Your pilot might be that — or
+            something else the map shows first.
+          </p>
+        </section>
+
+        {/* WHAT YOU GET — locked */}
+        <section aria-labelledby="get-h">
+          <h2
+            id="get-h"
             className="display text-2xl text-[var(--ink)] sm:text-3xl"
           >
             What you get
           </h2>
           <ul className="mt-8 space-y-8">
-            {tiers.map((t) => (
-              <li key={t.n} className="grid grid-cols-[3rem_1fr] gap-3">
-                <span className="pt-1 font-mono text-xs text-[var(--ink-soft)]">
-                  {t.n}
+            {ladder.map((t) => (
+              <li key={t.n} className="grid grid-cols-[2rem_1fr] gap-3">
+                <span className="pt-1 font-mono text-sm text-[var(--rust)]">
+                  {t.n}.
                 </span>
                 <div>
                   <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
@@ -85,9 +145,11 @@ export default function Home() {
                       {t.price}
                     </span>
                   </div>
-                  <p className="mt-2 leading-relaxed text-[var(--ink-soft)]">
-                    {t.body}
-                  </p>
+                  {t.body ? (
+                    <p className="mt-2 leading-relaxed text-[var(--ink-soft)]">
+                      {t.body}
+                    </p>
+                  ) : null}
                 </div>
               </li>
             ))}
@@ -96,14 +158,12 @@ export default function Home() {
 
         <div className="rule" />
 
-        {/* WHO + NOT THIS */}
+        {/* WHO + NOT THIS — locked */}
         <section className="grid gap-10 sm:grid-cols-2" aria-label="Fit">
           <div>
-            <h2 className="display text-2xl text-[var(--ink)]">Who it’s for</h2>
+            <h2 className="display text-2xl text-[var(--ink)]">Who</h2>
             <p className="mt-4 leading-relaxed text-[var(--ink-soft)]">
-              SA phone-first service firms ~2–20 staff (trades, allied health,
-              legal, real estate, surveyors) where a missed call or slow web
-              form costs a job.
+              SA phone-first service firms ~2–20 staff.
             </p>
           </div>
           <div>
@@ -121,7 +181,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* FOUNDER */}
+        {/* FOUNDER — locked */}
         <section
           className="rounded-sm border border-[var(--ink)]/15 bg-[var(--cream)]/70 p-6"
           aria-labelledby="founding-h"
@@ -130,22 +190,22 @@ export default function Home() {
             Founding slots
           </h2>
           <p className="mt-3 leading-relaxed text-[var(--ink-soft)]">
-            First two clients = founding slots — discounted build for a
-            publishable case study (they approve what’s public).
+            First two = founding slots — discounted build for publishable case
+            study (they approve).
           </p>
         </section>
 
-        {/* CTA FORM */}
+        {/* CTA FORM — locked */}
         <section
           id="enquire"
           className="rounded-sm bg-[var(--band)] p-6 text-[var(--paper)] sm:p-8"
           aria-labelledby="enquire-h"
         >
           <h2 id="enquire-h" className="display text-3xl text-[var(--paper)]">
-            Book a 90-minute discovery
+            Book a discovery
           </h2>
-          <p className="mt-3 max-w-md leading-relaxed text-[var(--paper)]/75">
-            Bring whoever owns the phones and the job book.
+          <p className="mt-3 max-w-md text-sm leading-relaxed text-[var(--paper)]/70">
+            Name · Business · Email · Phone · Comment (optional)
           </p>
           <div className="mt-8 [&_label_span]:text-[var(--paper)]/55 [&_input]:border-[var(--paper)]/20 [&_input]:bg-[var(--cream)] [&_input]:text-[var(--ink)] [&_textarea]:border-[var(--paper)]/20 [&_textarea]:bg-[var(--cream)] [&_textarea]:text-[var(--ink)] [&_button]:bg-[var(--rust)] [&_button]:text-[var(--paper)] [&_button:hover]:bg-[#b45309] [&_[role=status]]:border-[var(--paper)]/20 [&_[role=status]]:bg-[var(--cream)] [&_[role=status]_p]:text-[var(--ink)] [&_[role=alert]]:text-[#fecaca]">
             <EnquiryForm />
