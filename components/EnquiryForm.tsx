@@ -152,7 +152,7 @@ export function EnquiryForm() {
         disabled={status === "submitting"}
         className="cta mt-1 min-h-[3.25rem] w-full rounded-md bg-[var(--rust)] px-6 py-3.5 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-[var(--cream)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--cream)] disabled:opacity-60 sm:w-auto sm:min-w-[11rem]"
       >
-        {status === "submitting" ? "Sending\u2026" : "Enquire"}
+        {status === "submitting" ? "Sending..." : "Enquire"}
       </button>
     </form>
   );
