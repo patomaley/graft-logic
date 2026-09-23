@@ -1,8 +1,12 @@
-# never-miss (marketing one-pager)
+# Graft Logic (marketing one-pager)
 
-Patrick’s Adelaide site: **process-first AI** for phone-first SA service firms. Learn the work by doing it, map how jobs move, automate the friction. Repo name is historical; “never miss an enquiry” is an example transferable pattern on the page — not the whole offer.
+Public site for **Graft Logic**. Headline + enquire form only.
 
-Stack: Next.js 15 App Router + Tailwind + TypeScript. Enquiry form → `POST /api/enquiry`. No CMS. No secrets in repo.
+Repo folder `never-miss` is historical — “Never Miss an Enquiry” is an example
+pattern/template, not the brand.
+
+Stack: Next.js 15 App Router + Tailwind + TypeScript. Enquiry form →
+`POST /api/enquiry`. No CMS. No secrets in repo.
 
 ## Local
 

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Fraunces, Source_Sans_3 } from "next/font/google";
+import { SITE_NAME } from "@/lib/site";
 import "./globals.css";
 
 const display = Fraunces({
@@ -15,13 +16,17 @@ const body = Source_Sans_3({
 });
 
 export const metadata: Metadata = {
-  title: "See how AI can transform your business",
-  description: "Enquire to see how AI can transform your business.",
+  title: {
+    default: SITE_NAME,
+    template: `%s · ${SITE_NAME}`,
+  },
+  description: "See how AI can transform your business.",
   openGraph: {
-    title: "See how AI can transform your business",
-    description: "Enquire to see how AI can transform your business.",
+    title: SITE_NAME,
+    description: "See how AI can transform your business.",
     locale: "en_AU",
     type: "website",
+    siteName: SITE_NAME,
   },
 };
 

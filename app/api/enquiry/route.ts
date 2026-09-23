@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { validateEnquiry, type EnquiryPayload } from "@/lib/enquiry";
+import { SITE_NAME } from "@/lib/site";
 
 export const runtime = "nodejs";
 
@@ -20,7 +21,7 @@ async function sendViaFormEndpoint(
       email: data.email,
       phone: data.phone,
       comment: data.comment ?? "",
-      _subject: `Never Miss enquiry — ${data.businessName}`,
+      _subject: `${SITE_NAME} enquiry — ${data.businessName}`,
     }),
   });
 }
@@ -29,7 +30,7 @@ async function sendViaResend(data: EnquiryPayload): Promise<void> {
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.CONTACT_TO;
   const from =
-    process.env.RESEND_FROM ?? "Never Miss <onboarding@resend.dev>";
+    process.env.RESEND_FROM ?? `${SITE_NAME} <onboarding@resend.dev>`;
 
   if (!apiKey || !to) {
     throw new Error("Resend not configured");
@@ -48,7 +49,7 @@ async function sendViaResend(data: EnquiryPayload): Promise<void> {
     from,
     to: [to],
     replyTo: data.email,
-    subject: `Never Miss enquiry — ${data.businessName}`,
+    subject: `${SITE_NAME} enquiry — ${data.businessName}`,
     text: lines.join("\n"),
   });
 

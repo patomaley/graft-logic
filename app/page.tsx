@@ -1,9 +1,16 @@
 import { EnquiryForm } from "@/components/EnquiryForm";
+import { SITE_NAME } from "@/lib/site";
 
 export default function Home() {
   return (
-    <div className="mx-auto flex min-h-dvh max-w-[40rem] flex-col justify-center px-5 py-12 sm:px-6">
-      <main className="space-y-10">
+    <div className="mx-auto flex min-h-dvh max-w-[40rem] flex-col px-5 py-10 sm:px-6 sm:py-12">
+      <header className="mb-10">
+        <p className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--ink-soft)]">
+          {SITE_NAME}
+        </p>
+      </header>
+
+      <main className="flex flex-1 flex-col justify-center space-y-10">
         <h1 className="display text-[2.35rem] leading-[1.1] text-[var(--ink)] sm:text-[3.15rem]">
           See how AI can transform your business.
         </h1>
@@ -21,6 +28,10 @@ export default function Home() {
           </div>
         </section>
       </main>
+
+      <footer className="mt-12 border-t border-[var(--rule)] pt-5 text-sm text-[var(--ink-soft)]">
+        <p>{SITE_NAME}</p>
+      </footer>
     </div>
   );
 }
